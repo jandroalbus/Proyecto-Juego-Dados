@@ -4,8 +4,8 @@ import java.util.Random;
 public class JuegoDadosMetodos {
    
   //DECLARACIÓN DE VARIABLES GLOBALES
-	public static Scanner lector = new Scanner(System.in);
- 	public static final int DELAY = 500; 
+  public static Scanner lector = new Scanner(System.in);
+  public static final int DELAY = 500; 
   
   public static tiradaPlayer, puntosPlayer = 0, porrasPlayer = 0, tiradaCPU, puntosCPU = 0, porrasCPU = 0;
   public static boolean plantado = false;
@@ -13,19 +13,59 @@ public class JuegoDadosMetodos {
   public char plantarse;
   
   //INICIAMOS EL PROGRAMA
-  	public static void main(String[] args) throws InterruptedException {
-		int opcion;
-		do{
-			printMenu();
-			opcion = Integer.parseInt(lector.nextLine());
-		}while(opcion != 0);
+  public static void main(String[] args) throws InterruptedException {
+      int opcion;
+      do{
+        printMenu();
+        opcion = Integer.parseInt(lector.nextLine());
+      }while(opcion != 0);
   }
+  
+  //MUESTRA EL MENU PRINCIPAL
   public static void printMenu(){
-  	System.out.println("*************************");
-	System.out.println("***JUEGO DE DADOS ONCE***");
-	System.out.println("1. Nueva partida");
-	System.out.println("0. Salir");
-	System.out.println("\n Elige una opcion...");
+    System.out.println("*************************");
+    System.out.println("***JUEGO DE DADOS ONCE***");
+    System.out.println("1. Nueva partida");
+    System.out.println("0. Salir");
+    System.out.println("\n Elige una opcion...");
   }
+  
+  //LANZA DADO ALEATORIAMENTE - PARAMETRO = QUIEN TIRA
+  public static int lanzarDado(String turno) {
+
+    System.out.println(turno + " lanza el dado al aire ...");
+    Thread.sleep(DELAY);
+
+    tirada = r.nextInt(6 - 1 + 1) + 1;
+
+    System.out.println("\n*****");               
+    System.out.println("* " + tirada + " *");               
+    System.out.println("*****");                
+         
+    System.out.println("\nLa puntuación actual es " + puntos);
+
+    return puntos += tirada;  
     
+  }   
+
+  //DEVUELVE ALEATORIO INTEGER
+  public static int aleatorio(int min, int max) {
+		
+    Random r = new Random();
+    return r.nextInt(max - min +1 ) + min;
+		
+  }
+  
+  //SI LA PUNTUACION ES ONCE SE SUMARAN DOS PORRAS AL USUARIO
+  public static int once(int porras) {
+
+    System.out.println("\n$$$$$$$$$$$$$$$$");
+    System.out.println("$$$$ ¡ONCE! $$$$");
+    System.out.println("$$$$$$$$$$$$$$$$");
+    System.out.println("\nDoble porra para CPU\n");	
+    
+    return porras += 2;
+
+  }  
+  
 }

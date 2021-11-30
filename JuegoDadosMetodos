@@ -4,22 +4,28 @@ import java.util.Random;
 public class JuegoDadosMetodos {
    
   //DECLARACIÓN DE VARIABLES GLOBALES
-	public static Random r = new Random();
 	public static Scanner lector = new Scanner(System.in);
+ 	public static final int DELAY = 500; 
   
-  public static final int DELAY = 500; 
-  
-  public static int opcion, tiradaPlayer, puntosPlayer = 0, porrasPlayer = 0, tiradaCPU, puntosCPU = 0, porrasCPU = 0;
+  public static tiradaPlayer, puntosPlayer = 0, porrasPlayer = 0, tiradaCPU, puntosCPU = 0, porrasCPU = 0;
   public static boolean plantado = false;
   
   public char plantarse;
   
   //INICIAMOS EL PROGRAMA
-	public static void main(String[] args) throws InterruptedException {
-      
-      
-
+  	public static void main(String[] args) throws InterruptedException {
+		int opcion;
+		do{
+			printMenu();
+			opcion = Integer.parseInt(lector.nextLine());
+		}while(opcion != 0);
+  }
+  public static void printMenu(){
+  	System.out.println("*************************");
+	System.out.println("***JUEGO DE DADOS ONCE***");
+	System.out.println("1. Nueva partida");
+	System.out.println("0. Salir");
+	System.out.println("\n Elige una opcion...");
   }
     
-
 }

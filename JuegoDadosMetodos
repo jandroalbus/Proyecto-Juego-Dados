@@ -1,0 +1,25 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class JuegoDadosMetodos {
+   
+  //DECLARACIÓN DE VARIABLES GLOBALES
+	public static Random r = new Random();
+	public static Scanner lector = new Scanner(System.in);
+  
+  public static final int DELAY = 500; 
+  
+  public static int opcion, tiradaPlayer, puntosPlayer = 0, porrasPlayer = 0, tiradaCPU, puntosCPU = 0, porrasCPU = 0;
+  public static boolean plantado = false;
+  
+  public char plantarse;
+  
+  //INICIAMOS EL PROGRAMA
+	public static void main(String[] args) throws InterruptedException {
+      
+      
+
+  }
+    
+
+}

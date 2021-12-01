@@ -34,7 +34,7 @@ public class JuegoDadosMetodos {
     System.out.println("\n Elige una opcion...");
   }
   
-  //LANZA DADO ALEATORIAMENTE - PARAMETRO = QUIEN TIRA
+  ///LANZA DADO ALEATORIAMENTE - PARAMETRO = QUIEN TIRA
   public static int lanzarDado(String turno, int puntos) {
 
     int tirada = 0;

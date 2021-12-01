@@ -85,6 +85,33 @@ public class JuegoDadosMetodos {
     System.out.println("\nDoble porra para CPU\n");	
     
     return porras += 2;
+    
+    //EL JUGADOR SE PASA DE 11
+     public static int excesoPuntos (int puntosCPU, int puntosPlayer)
+     return poprrasCPU += 1;
+     return puntos
+     if (puntosPlayer > 11){
+     System.out.println("Ohh!! Te has pasado");
+     System.out.println("Porra para la CPU");  
+     }
+     
+	     
+	     
+	     
+	     
+                  //El jugador se ha pasado
+                  System.out.println("Ohh!! Te has pasado");
+                  System.out.println("Porra para la CPU");                  
+                  porrasCPU += 1;
+                  puntosCPU = 0;
+                  puntosPlayer = 0;
+                  System.out.println("\n**********************");
+                  System.out.println("* " + porrasPlayer + " PLAYER  -  CPU " +porrasCPU + " *");
+                  System.out.println("**********************");
+                  System.out.print("\nPulsa intro para continuar...");
+                  lector.nextLine();
+               }
+
 
   }
   

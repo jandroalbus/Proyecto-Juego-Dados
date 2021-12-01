@@ -7,7 +7,7 @@ public class JuegoDadosMetodos {
   public static Scanner lector = new Scanner(System.in);
   public static final int DELAY = 500, MIN = 1, MAX = 6;
   
-  public static tiradaPlayer, puntosPlayer = 0, porrasPlayer = 0, tiradaCPU, puntosCPU = 0, porrasCPU = 0;
+  public static int tiradaPlayer, puntosPlayer = 0, porrasPlayer = 0, tiradaCPU, puntosCPU = 0, porrasCPU = 0;
   public static boolean plantado = false;
   
   public char plantarse;
@@ -35,12 +35,16 @@ public class JuegoDadosMetodos {
   }
   
   //LANZA DADO ALEATORIAMENTE - PARAMETRO = QUIEN TIRA
-  public static int lanzarDado(String turno) {
+  public static int lanzarDado(String turno, int puntos) {
 
     int tirada = 0;
     
     System.out.println(turno + " lanza el dado al aire ...");
-    Thread.sleep(DELAY);
+    try {
+      Thread.sleep(DELAY);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
 
     tirada = aleatorio(MIN, MAX);
 
@@ -64,7 +68,7 @@ public class JuegoDadosMetodos {
   
   //DEVUELVE DECISION DE PLANTARSE - BOOLEANO
   public static boolean plantarte() {
-  
+    char plantarse = ' ';
     System.out.print("¿Deseas plantarte con " + puntosPlayer +" puntos? (s/n): ");
     plantarse = lector.nextLine().charAt(0);
 

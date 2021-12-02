@@ -5,20 +5,72 @@ public class JuegoDadosMetodos {
    
   //DECLARACIÓN DE VARIABLES GLOBALES
   public static Scanner lector = new Scanner(System.in);
-  public static final int DELAY = 500, MIN = 1, MAX = 6;
+  public static final int DELAY = 1500, MIN = 1, MAX = 6;
   
-  public static int tiradaPlayer, puntosPlayer = 0, porrasPlayer = 0, tiradaCPU, puntosCPU = 0, porrasCPU = 0;
+  public static int puntosPlayer = 0, porrasPlayer = 0, puntosCPU = 0, porrasCPU = 0;
   public static boolean plantado = false;
   
-  public char plantarse;
-  
   //INICIAMOS EL PROGRAMA
-  public static void main(String[] args) throws InterruptedException {
-      int opcion;
-      do{
-        printMenu();
-        opcion = Integer.parseInt(lector.nextLine());
-      }while(opcion != 0);
+  public static void main(String[] args){
+    int opcion;
+    do{
+      printMenu();
+      opcion = Integer.parseInt(lector.nextLine());
+      if(opcion == 1){
+        //reset de puntos y porras
+        do{
+          puntosPlayer = lanzarDado("Player", puntosPlayer);
+          if(puntosPlayer < 11) {
+            plantado = plantarte();
+            if(plantado) {
+                plantado = false;
+                //Ahora la CPU intenta igualar o mejorar el resultado del jugador
+                while(puntosCPU < puntosPlayer) {
+                    puntosCPU = lanzarDado("CPU", puntosCPU);
+                }
+                if(puntosCPU > 11) {
+                    System.out.println("CPU se ha pasado. Porra para Player!!");
+                    porrasPlayer++;
+                    puntosCPU = 0;
+                    puntosPlayer = 0;
+                } else if(puntosCPU > puntosPlayer) { // Gana CPU
+                    if(puntosCPU == 11) {
+                      once(porrasCPU, "CPU");
+                    } else {
+                        System.out.println("CPU ha mejorado tu puntuación. Porra para CPU!!");
+                        porrasCPU++;
+                    }
+                    puntosCPU = 0;
+                    puntosPlayer = 0;
+                } else { // Empate
+                    System.out.println("Empate!! Porra para los dos");
+                    puntosCPU = 0;
+                    puntosPlayer = 0;
+                    porrasCPU++;
+                    porrasPlayer++;
+                }
+                //puntuacionenes 
+            }else if (puntosPlayer == 11) {                  
+              //Al obtener 11 el jugador suma automáticamente 2 porras
+              once(porrasCPU, "PLAYER");
+              
+              //puntuaciones
+          } else {
+              //El jugador se ha pasado
+              System.out.println("Ohh!! Te has pasado");
+              System.out.println("Porra para la CPU");                  
+              porrasCPU += 1;
+              puntosCPU = 0;
+              puntosPlayer = 0;
+              //puntuaciones
+            }
+
+          }
+          //puntuaciones
+        }while(porrasPlayer < 5 && porrasCPU < 5);
+      }
+    }while(opcion != 0);
+    System.out.println("Hasta pronto!!");
   }
   
   /**
@@ -40,22 +92,16 @@ public class JuegoDadosMetodos {
     int tirada = 0;
     
     System.out.println(turno + " lanza el dado al aire ...");
-    try {
-      Thread.sleep(DELAY);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    delay();
 
     tirada = aleatorio(MIN, MAX);
 
     System.out.println("\n*****");               
     System.out.println("* " + tirada + " *");               
-    System.out.println("*****");                
-         
+    System.out.println("*****");               
+    puntos += tirada;
     System.out.println("\nLa puntuación actual es " + puntos);
-
-    return puntos += tirada;  
-    
+    return puntos;
   }   
 
   //DEVUELVE ALEATORIO INTEGER
@@ -74,30 +120,24 @@ public class JuegoDadosMetodos {
 
     return plantado =  plantarse == 's' || plantarse == 'S';
 
-    }  
+  }  
   
   //SI LA PUNTUACION ES ONCE SE SUMARAN DOS PORRAS AL USUARIO
-  public static int once(int porras) {
+  public static void once(int porras, String turno) {
 
     System.out.println("\n$$$$$$$$$$$$$$$$");
     System.out.println("$$$$ ¡ONCE! $$$$");
     System.out.println("$$$$$$$$$$$$$$$$");
-    System.out.println("\nDoble porra para CPU\n");	
+    System.out.println("\nDoble porra para " + turno + "\n");	
     
-    return porras += 2;
-    
-    //EL JUGADOR SE PASA DE 11
-     public static int excesoPuntos (int porrasCPU, int puntosCPU, int puntosPlayer) {	
-     if (puntosPlayer > 11){
-     System.out.println("Ohh!! Te has pasado");
-     System.out.println("Porra para la CPU");
-     return porrasCPU+= 1;
-     return puntosCPU = 0;
-     return puntosPlayer = 0;
-     }
-
-
-
+    porras += 2;
   }
-  
+  // DELAY MILLISEC
+  public static void delay(){
+    try {
+      Thread.sleep(DELAY);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
 }

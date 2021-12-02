@@ -30,10 +30,10 @@ public class JuegoDadosMetodos {
                 }
                 if(puntosCPU > 11) {
                     System.out.println("CPU se ha pasado. Porra para Player!!");
-                    porrasPlayer++;
-                    puntosCPU = 0;
-                    puntosPlayer = 0;
-                } else if(puntosCPU > puntosPlayer) { // Gana CPU
+                    resetRonda("Player");
+		}
+		
+                else if(puntosCPU > puntosPlayer) { // Gana CPU
                     if(puntosCPU == 11) {
                       once(porrasCPU, "CPU");
                     } else {
@@ -44,13 +44,11 @@ public class JuegoDadosMetodos {
                     puntosPlayer = 0;
                 } else { // Empate
                     System.out.println("Empate!! Porra para los dos");
-                    puntosCPU = 0;
-                    puntosPlayer = 0;
-                    porrasCPU++;
-                    porrasPlayer++;
-                }
+			
+		resetRonda("Empate");
                 //puntuacionenes 
-            }else if (puntosPlayer == 11) {                  
+			
+          } else if (puntosPlayer == 11) {                  
               //Al obtener 11 el jugador suma automáticamente 2 porras
               once(porrasPlayer, "PLAYER");
               
@@ -59,9 +57,9 @@ public class JuegoDadosMetodos {
               //El jugador se ha pasado
               System.out.println("Ohh!! Te has pasado");
               System.out.println("Porra para la CPU");                  
-              porrasCPU += 1;
-              puntosCPU = 0;
-              puntosPlayer = 0;
+              
+		resetRonda("CPU");
+		}
               //puntuaciones
             }
 
@@ -140,6 +138,8 @@ public class JuegoDadosMetodos {
       e.printStackTrace();
     }
   }
+	    
+	    
 	public static void resetJuego(){
     puntosCPU = 0;
     puntosPlayer = 0;

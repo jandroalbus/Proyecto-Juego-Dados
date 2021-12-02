@@ -52,7 +52,7 @@ public class JuegoDadosMetodos {
                 //puntuacionenes 
             }else if (puntosPlayer == 11) {                  
               //Al obtener 11 el jugador suma automáticamente 2 porras
-              once(porrasCPU, "PLAYER");
+              once(porrasPlayer, "PLAYER");
               
               //puntuaciones
           } else {

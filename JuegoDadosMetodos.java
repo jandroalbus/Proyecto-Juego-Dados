@@ -17,6 +17,7 @@ public class JuegoDadosMetodos {
       printMenu();
       opcion = Integer.parseInt(lector.nextLine());
       if(opcion == 1){
+	resetJuego();
         //reset de puntos y porras
         do{
           puntosPlayer = lanzarDado("Player", puntosPlayer);

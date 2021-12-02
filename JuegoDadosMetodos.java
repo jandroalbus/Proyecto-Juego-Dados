@@ -40,12 +40,13 @@ public class JuegoDadosMetodos {
                         System.out.println("CPU ha mejorado tu puntuación. Porra para CPU!!");
                         porrasCPU++;
                     }
-                    puntosCPU = 0;
-                    puntosPlayer = 0;
+                    resetRonda("CPU");
                 } else { // Empate
                     System.out.println("Empate!! Porra para los dos");
 			
 		resetRonda("Empate");
+			
+		puntuacion();
                 //puntuacionenes 
 			
           } else if (puntosPlayer == 11) {                  
@@ -59,12 +60,14 @@ public class JuegoDadosMetodos {
               System.out.println("Porra para la CPU");                  
               
 		resetRonda("CPU");
-		}
+		    
+		puntuacion();
               //puntuaciones
             }
 
           }
           //puntuaciones
+		puntuacion();
         }while(porrasPlayer < 5 && porrasCPU < 5);
       }
     }while(opcion != 0);

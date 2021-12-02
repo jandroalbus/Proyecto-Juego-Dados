@@ -140,4 +140,29 @@ public class JuegoDadosMetodos {
       e.printStackTrace();
     }
   }
+	public static void resetJuego(){
+    puntosCPU = 0;
+    puntosPlayer = 0;
+    porrasCPU = 0;
+    porrasPlayer = 0;
+}
+
+public static void puntuacion(){
+    System.out.println("\n**********************");
+    System.out.println("* " + porrasPlayer + " PLAYER  -  CPU " + porrasCPU + " *");
+    System.out.println("**********************");
+}
+
+public static void resetRonda(String ganador){
+    puntosCPU = 0;
+    puntosPlayer = 0;
+    if(ganador.equalsIgnoreCase("CPU")){
+        porrasCPU++
+    }else if(ganador.equalsIgnoreCase("Player")){
+        porrasPLayer++;
+    }else{
+        porrasPLayer++;
+        porrasCPU++;
+    }
+}
 }

@@ -17,8 +17,7 @@ public class JuegoDadosMetodos {
       printMenu();
       opcion = Integer.parseInt(lector.nextLine());
       if(opcion == 1){
-	resetJuego();
-        //reset de puntos y porras
+	      resetJuego();
         do{
           puntosPlayer = lanzarDado("Player", puntosPlayer);
           if(puntosPlayer < 11) {
@@ -30,45 +29,36 @@ public class JuegoDadosMetodos {
                     puntosCPU = lanzarDado("CPU", puntosCPU);
                 }
                 if(puntosCPU > 11) {
-                    System.out.println("CPU se ha pasado. Porra para Player!!");
-                    resetRonda("Player");
-		}
+                  System.out.println("CPU se ha pasado. Porra para Player!!");
+                  resetRonda("Player");
+		            }
 		
                 else if(puntosCPU > puntosPlayer) { // Gana CPU
                     if(puntosCPU == 11) {
-                      once(porrasCPU, "CPU");
+                      porrasCPU = once(porrasCPU, "CPU");
                     } else {
                         System.out.println("CPU ha mejorado tu puntuación. Porra para CPU!!");
                         porrasCPU++;
                     }
-                    resetRonda("CPU");
+                    puntosCPU = 0;
+                    puntosPlayer = 0;
                 } else { // Empate
                     System.out.println("Empate!! Porra para los dos");
-			
-		resetRonda("Empate");
-			
-		puntuacion();
-                //puntuacionenes 
-			
-          } else if (puntosPlayer == 11) {                  
+		                resetRonda("Empate");
+		                puntuacion();
+                }
+              }
+            } else if (puntosPlayer == 11) {                  
               //Al obtener 11 el jugador suma automáticamente 2 porras
-              once(porrasPlayer, "PLAYER");
-              
-              //puntuaciones
-          } else {
+              porrasPlayer = once(porrasPlayer, "PLAYER");
+              } else {
               //El jugador se ha pasado
               System.out.println("Ohh!! Te has pasado");
-              System.out.println("Porra para la CPU");                  
-              
-		resetRonda("CPU");
-		    
-		puntuacion();
-              //puntuaciones
-            }
+              System.out.println("Porra para la CPU"); 
 
-          }
-          //puntuaciones
-		puntuacion();
+		          resetRonda("CPU");
+            }
+          puntuacion();
         }while(porrasPlayer < 5 && porrasCPU < 5);
       }
     }while(opcion != 0);
@@ -125,14 +115,14 @@ public class JuegoDadosMetodos {
   }  
   
   //SI LA PUNTUACION ES ONCE SE SUMARAN DOS PORRAS AL USUARIO
-  public static void once(int porras, String turno) {
+  public static int once(int porras, String turno) {
 
     System.out.println("\n$$$$$$$$$$$$$$$$");
     System.out.println("$$$$ ¡ONCE! $$$$");
     System.out.println("$$$$$$$$$$$$$$$$");
     System.out.println("\nDoble porra para " + turno + "\n");	
     
-    porras += 2;
+    return porras += 2;
   }
   // DELAY MILLISEC
   public static void delay(){
@@ -149,24 +139,24 @@ public class JuegoDadosMetodos {
     puntosPlayer = 0;
     porrasCPU = 0;
     porrasPlayer = 0;
-}
+  }
 
-public static void puntuacion(){
+  public static void puntuacion(){
     System.out.println("\n**********************");
     System.out.println("* " + porrasPlayer + " PLAYER  -  CPU " + porrasCPU + " *");
     System.out.println("**********************");
-}
+  }
 
-public static void resetRonda(String ganador){
+  public static void resetRonda(String ganador){
     puntosCPU = 0;
     puntosPlayer = 0;
     if(ganador.equalsIgnoreCase("CPU")){
-        porrasCPU++
+        porrasCPU++;
     }else if(ganador.equalsIgnoreCase("Player")){
-        porrasPLayer++;
+        porrasPlayer++;
     }else{
-        porrasPLayer++;
+        porrasPlayer++;
         porrasCPU++;
     }
-}
+  }
 }
